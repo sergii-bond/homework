@@ -11,6 +11,7 @@ RUN pip install -e /opt/gym/ && \
     apt-get update && \
     apt-get install -y vim python-tk
 
+
 COPY hw2 hw2
 
 WORKDIR /opt/hw2
