@@ -504,7 +504,10 @@ class Agent(object):
         if self.normalize_advantages:
             # On the next line, implement a trick which is known empirically to reduce variance
             # in policy gradient methods: normalize adv_n to have mean zero and std=1.
-            adv_n = (adv_n - np.mean(adv_n)) / np.std(adv_n)
+            std = np.std(adv_n)
+            if std < 1e-9:
+                std = 1
+            adv_n = (adv_n - np.mean(adv_n)) / std
         return q_n, adv_n
 
     def update_parameters(self, ob_no, ac_na, q_n, adv_n):

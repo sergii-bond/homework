@@ -52,8 +52,10 @@ def plot_data(data, value="AverageReturn"):
     if isinstance(data, list):
         data = pd.concat(data, ignore_index=True)
 
+    print(data.columns)
     sns.set(style="darkgrid", font_scale=1.5)
-    sns.tsplot(data=data, time="Iteration", value=value, unit="Unit", condition="Condition")
+    sns.lineplot(data=data, x="Iteration", y=value, hue="Condition", ci=None)
+    #sns.tsplot(data=data, time="Iteration", value=value, condition="Condition", unit="Unit")
     plt.legend(loc='best').draggable()
     plt.show()
 
